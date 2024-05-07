@@ -29,7 +29,7 @@ nav ul li a {
 
 main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 200px; /* Mengatur lebar aside */
     grid-gap: 20px;
 }
 
@@ -37,3 +37,10 @@ footer {
     background-color: #f2f2f2;
     text-align: center;
 }
+
+/* Gaya untuk aside */
+aside {
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
