@@ -3,45 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Report</title>
+    <title>Bike Sales Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <body>
-    <header>
-        <h1>Dashboard Report by Palembang 7 Team</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Settings</a></li>
-        </ul>
-    </nav>
-    <canvas id="bikechart"></canvas>
-    <script src="script.js"></script>
-    <main>
-        <section id="dataSection">
-            <h2>Data Visualization</h2>
-            <div id="dataContainer"></div>
-        </section>
-        <aside id="filterAside">
-            <h2>Filter Data</h2>
-            <form id="filterForm">
-                <label for="category">Category:</label>
-                <select id="category">
-                    <option value="all">All</option>
-                    <option value="category1">Category 1</option>
-                    <option value="category2">Category 2</option>
-                    <option value="category3">Category 3</option>
-                </select>
-                <button type="submit">Apply Filter</button>
-            </form>
-        </aside>
-    </main>
-    <footer>
-        <p>&copy; 2024 Dashboard Report by Palembang 7 Team</p>
-    </footer>
-    <script src="script.js"></script>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Bike Sales</h1>
+            <h2>Team 7</h2>
+            <ul>
+                <li>Home</li>
+                <li>Dashboard</li>
+                <li>Settings</li>
+                <li>Profile</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h2>Dashboard</h2>
+                <div class="user-info">
+                    <input type="text" placeholder="Search">
+                    <div class="notifications">🔔</div>
+                    <div class="profile">👤</div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <p>Order Quantity</p>
+                    <h3 id="orderQuantity"></h3>
+                </div>
+                <div class="card">
+                    <p>Profit</p>
+                    <h3 id="profit"></h3>
+                </div>
+                <div class="card">
+                    <p>Revenue</p>
+                    <h3 id="revenue"></h3>
+                </div>
+            </div>
+            <div class="charts">
+                <canvas id="barChart1"></canvas>
+                <canvas id="pieChart"></canvas>
+                <canvas id="lineChart"></canvas>
+                <canvas id="barChart2"></canvas>
+                <canvas id="barChart3"></canvas>
+                <canvas id="lineChart2"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>

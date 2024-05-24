@@ -1,46 +1,81 @@
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
-    color: #333;
     margin: 0;
     padding: 0;
+    background-color: #e0f7fa;
 }
 
-header, nav, main, footer {
-    padding: 10px;
+.container {
+    display: flex;
 }
 
-nav ul {
+.sidebar {
+    background-color: #00695c;
+    color: white;
+    width: 200px;
+    padding: 20px;
+}
+
+.sidebar h1, .sidebar h2 {
+    margin: 0;
+}
+
+.sidebar ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-nav ul li {
-    display: inline;
+.user-info {
+    display: flex;
+    align-items: center;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: #333;
+.user-info input {
+    padding: 5px;
+    margin-right: 10px;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 1fr 200px; /* Mengatur lebar aside */
-    grid-gap: 20px;
+.cards {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-footer {
-    background-color: #f2f2f2;
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
     text-align: center;
 }
 
-/* Gaya untuk aside */
-aside {
-    background-color: #f9f9f9;
-    padding: 10px;
+.charts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
+canvas {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
