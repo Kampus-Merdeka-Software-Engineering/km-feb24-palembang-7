@@ -13,23 +13,33 @@
             <h1>Bike Sales</h1>
             <h2>Team 7</h2>
             <ul>
-                <li>Home</li>
-                <li>Dashboard</li>
-                <li>Settings</li>
-                <li>Profile</li>
-                <li>Logout</li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#chart">Chart</a></li>
+                <li><a href="#looker">Looker Studio</a></li>
+                <li><a href="#report">Report</a></li>
             </ul>
         </div>
+
         <div class="main-content">
-            <div class="header">
-                <h2>Dashboard</h2>
-                <div class="user-info">
-                    <input type="text" placeholder="Search">
-                    <div class="notifications">🔔</div>
-                    <div class="profile">👤</div>
+            <div class="content-section" id="home">
+                <h2>Home</h2>
+                <div class="header">
+                    <div class="user-info">
+                        <input type="text" placeholder="Search">
+                        <div class="notifications">🔔</div>
+                        <div class="profile">👤</div>
+                    </div>
                 </div>
             </div>
-            <div class="cards">
+
+            <div class="content-section" id="about">
+                <h1>About Us</h1>
+                <p>Team Palembang-7 is a group of students interested in the world of data and software engineering and is part of RevoU Tech Academy 2024. 
+                    We consist of:</p>
+            </div>
+
+            <div class="content-section cards">
                 <div class="card">
                     <p>Order Quantity</p>
                     <h3 id="orderQuantity"></h3>
@@ -43,16 +53,260 @@
                     <h3 id="revenue"></h3>
                 </div>
             </div>
-            <div class="charts">
-                <canvas id="barChart1"></canvas>
-                <canvas id="pieChart"></canvas>
-                <canvas id="lineChart"></canvas>
-                <canvas id="barChart2"></canvas>
-                <canvas id="barChart3"></canvas>
-                <canvas id="lineChart2"></canvas>
+
+            <div class="content-section charts" id="chart">
+                <h1>Bike Sales Dashboard</h1>
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <canvas id="orderQuantityByYear"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueByYear"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="orderQuantityByGender"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="orderQuantityBySeason"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="orderQuantityBySubCategory"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueBySubCategory"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="totalProfitBySubCategory"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="orderQuantityByCountry"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueByCountry"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section" id="looker">
+                <h2>Looker Studio</h2>
+                <a href="https://lookerstudio.google.com/reporting/ad388c61-a1b7-4293-96c4-70d19ff5096a" target="_blank">Our Team's Looker Studio</a>
+            </div>
+
+            <div class="content-section" id="report">
+                <h2>Report</h2>
+                <p>Content for the report goes here.</p>
             </div>
         </div>
     </div>
-    <script src="scripts.js"></script>
+
+    <script>
+        // Fetch data from bikesales.json
+        fetch('bikesales.json')
+            .then(response => response.json())
+            .then(data => {
+                // Create chart for Order Quantity by Year
+                const ctxOrderQuantityByYear = document.getElementById('orderQuantityByYear').getContext('2d');
+                new Chart(ctxOrderQuantityByYear, {
+                    type: 'bar',
+                    data: {
+                        labels: data.years,
+                        datasets: [{
+                            label: 'Order Quantity by Year',
+                            data: data.orderQuantityByYear,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Revenue by Year
+                const ctxRevenueByYear = document.getElementById('revenueByYear').getContext('2d');
+                new Chart(ctxRevenueByYear, {
+                    type: 'bar',
+                    data: {
+                        labels: data.years,
+                        datasets: [{
+                            label: 'Revenue by Year',
+                            data: data.revenueByYear,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Order Quantity by Gender
+                const ctxOrderQuantityByGender = document.getElementById('orderQuantityByGender').getContext('2d');
+                new Chart(ctxOrderQuantityByGender, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Male', 'Female'],
+                        datasets: [{
+                            label: 'Order Quantity by Gender',
+                            data: [data.orderQuantityMale, data.orderQuantityFemale],
+                            backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                            borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+
+                // Create chart for Order Quantity by Season
+                const ctxOrderQuantityBySeason = document.getElementById('orderQuantityBySeason').getContext('2d');
+                new Chart(ctxOrderQuantityBySeason, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Spring', 'Summer', 'Autumn', 'Winter'],
+                        datasets: [{
+                            label: 'Order Quantity by Season',
+                            data: data.orderQuantityBySeason,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Order Quantity by SubCategory
+                const ctxOrderQuantityBySubCategory = document.getElementById('orderQuantityBySubCategory').getContext('2d');
+                new Chart(ctxOrderQuantityBySubCategory, {
+                    type: 'bar',
+                    data: {
+                        labels: data.subCategories,
+                        datasets: [{
+                            label: 'Order Quantity by SubCategory',
+                            data: data.orderQuantityBySubCategory,
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Revenue by SubCategory
+                const ctxRevenueBySubCategory = document.getElementById('revenueBySubCategory').getContext('2d');
+                new Chart(ctxRevenueBySubCategory, {
+                    type: 'bar',
+                    data: {
+                        labels: data.subCategories,
+                        datasets: [{
+                            label: 'Revenue by SubCategory',
+                            data: data.revenueBySubCategory,
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Total Profit by SubCategory
+                const ctxTotalProfitBySubCategory = document.getElementById('totalProfitBySubCategory').getContext('2d');
+                new Chart(ctxTotalProfitBySubCategory, {
+                    type: 'bar',
+                    data: {
+                        labels: data.subCategories,
+                        datasets: [{
+                            label: 'Total Profit by SubCategory',
+                            data: data.totalProfitBySubCategory,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Order Quantity by Country
+                const ctxOrderQuantityByCountry = document.getElementById('orderQuantityByCountry').getContext('2d');
+                new Chart(ctxOrderQuantityByCountry, {
+                    type: 'bar',
+                    data: {
+                        labels: data.countries,
+                        datasets: [{
+                            label: 'Order Quantity by Country',
+                            data: data.orderQuantityByCountry,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create chart for Revenue by Country
+                const ctxRevenueByCountry = document.getElementById('revenueByCountry').getContext('2d');
+                new Chart(ctxRevenueByCountry, {
+                    type: 'bar',
+                    data: {
+                        labels: data.countries,
+                        datasets: [{
+                            label: 'Revenue by Country',
+                            data: data.revenueByCountry,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
 </body>
 </html>

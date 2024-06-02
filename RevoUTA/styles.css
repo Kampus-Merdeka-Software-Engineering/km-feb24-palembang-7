@@ -2,44 +2,77 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e0f7fa;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .container {
     display: flex;
+    width: 100%;
 }
 
 .sidebar {
-    background-color: #00695c;
-    color: white;
-    width: 200px;
+    width: 20%;
+    background-color: #32cd32;
     padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .sidebar h1, .sidebar h2 {
-    margin: 0;
+    margin: 10px 0;
 }
 
 .sidebar ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    width: 100%;
 }
 
 .sidebar ul li {
-    margin: 20px 0;
-    cursor: pointer;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #ddd;
 }
 
 .main-content {
-    flex-grow: 1;
+    width: 80%;
     padding: 20px;
+    overflow-y: auto;
+}
+
+.content-section {
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px 0;
 }
 
 .user-info {
@@ -48,34 +81,40 @@ body {
 }
 
 .user-info input {
-    padding: 5px;
     margin-right: 10px;
 }
 
 .cards {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: space-around;
+    width: 100%;
+    margin: 20px 0;
 }
 
 .card {
-    background-color: white;
+    width: 30%;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex: 1;
     text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .charts {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    width: 100%;
+    margin: 20px 0;
 }
 
-canvas {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.chart-container {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
