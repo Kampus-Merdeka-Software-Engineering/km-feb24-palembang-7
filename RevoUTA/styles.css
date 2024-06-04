@@ -10,11 +10,12 @@ body {
 .container {
     display: flex;
     width: 100%;
+    
 }
 
 .sidebar {
     width: 20%;
-    background-color: #32cd32;
+    background-color: #000435;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -24,6 +25,13 @@ body {
 
 .sidebar h1, .sidebar h2 {
     margin: 10px 0;
+}
+
+/* styles.css */
+.sidebar h1,
+.sidebar h3,
+.sidebar footer p {
+    color: grey;
 }
 
 .sidebar ul {
@@ -39,7 +47,7 @@ body {
 
 .sidebar ul li a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
     display: block;
     width: 100%;
@@ -98,11 +106,13 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .charts {
     width: 100%;
     margin: 20px 0;
+    background: #ebecf0
 }
 
 .charts-grid {
@@ -117,4 +127,12 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
 }
