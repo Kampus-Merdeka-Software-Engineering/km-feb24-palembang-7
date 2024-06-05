@@ -51,20 +51,21 @@
                     <li>Muhammd Rafi (Front End) | <a href="https://www.linkedin.com/in/muhammadrafiakbr">Linkedin</a> | <a href="https://github.com/muhrafiakbr"> Github</a></li>
             </div>
 
-            <div class="content-section cards">
-                <div class="card">
-                    <p>Order Quantity</p>
-                    <h3 id="orderQuantity"></h3>
+                        <div class="content-section cards" id="cards">
+                <div class="card" id="totalOrderQuantityCard">
+                    <h3>Total Order Quantity</h3>
+                    <p id="totalOrderQuantity">Loading...</p>
                 </div>
-                <div class="card">
-                    <p>Profit</p>
-                    <h3 id="profit"></h3>
+                <div class="card" id="totalProfitCard">
+                    <h3>Total Profit</h3>
+                    <p id="totalProfit">Loading...</p>
                 </div>
-                <div class="card">
-                    <p>Revenue</p>
-                    <h3 id="revenue"></h3>
+                <div class="card" id="totalRevenueCard">
+                    <h3>Total Revenue</h3>
+                    <p id="totalRevenue">Loading...</p>
                 </div>
             </div>
+
 
             <div class="content-section charts" id="chart">
                 <h1>Bike Sales Dashboard</h1>
@@ -113,10 +114,19 @@
   
 
     <script>
-        // Fetch data from bikesales.json
         fetch('bikesales.json')
             .then(response => response.json())
             .then(data => {
+                // Calculate total values
+                const totalOrderQuantity = data.orderQuantityByYear.reduce((a, b) => a + b, 0);
+                const totalRevenue = data.revenueByYear.reduce((a, b) => a + b, 0);
+                const totalProfit = data.totalProfitBySubCategory.reduce((a, b) => a + b, 0);
+
+                // Display total values
+                document.getElementById('totalOrderQuantity').textContent = totalOrderQuantity;
+                document.getElementById('totalProfit').textContent = totalProfit;
+                document.getElementById('totalRevenue').textContent = totalRevenue;
+
                 // Create chart for Order Quantity by Year
                 const ctxOrderQuantityByYear = document.getElementById('orderQuantityByYear').getContext('2d');
                 new Chart(ctxOrderQuantityByYear, {
